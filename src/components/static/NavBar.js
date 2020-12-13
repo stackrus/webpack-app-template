@@ -29,14 +29,6 @@ const NavBar = () => (
                 </ul>
             </div>
         </div>
-        {/*<h2>Кукусики йопта</h2>*/}
-        {/*<div className={"row"}>*/}
-        {/*    <div className={"col-sm-3"}>Главная</div>*/}
-        {/*    <div className={"col-sm-3"}>Знакомства </div>*/}
-        {/*    <div className={"col-sm-3"}>Диалоги </div>*/}
-        {/*    <div className={"col-sm-3"}>Профиль </div>*/}
-
-        {/*</div>*/}
     </nav>
 );
 
