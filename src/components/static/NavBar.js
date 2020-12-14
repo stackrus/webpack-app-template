@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/navbar.css'
-import headerLogo from './icons/headerLogo.png'
+import headerLogo from '../../../public/img/headerLogo.png'
 
 const NavBar = () => (
     <nav className={"navbar navbar-expand-md navbar-light bg-light sticky-top"}>

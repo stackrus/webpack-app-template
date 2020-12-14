@@ -11,12 +11,12 @@ const NaviBar = () => (
                 <Nav className={"mr-auto"}>
                     <Nav.Link as={Link} to={"/"}>Главная</Nav.Link>
                     <Nav.Link as={Link} to={"/dating"}>Знакомства</Nav.Link>
-                    <Nav.Link as={Link} to={"/dialog"}>Диалоги</Nav.Link>
+                    <Nav.Link as={Link} to={"/dialogs"}>Диалоги</Nav.Link>
                     <Nav.Link as={Link} to={"/profile"}>Профиль</Nav.Link>
                 </Nav>
                 <Nav>
                     <Button className={"mr-2"} variant={"primary"}>Войти</Button>
-                    <Button variant={"primary"}>Зарегистрироваться</Button>
+                    <Button variant={"secondary"}>Зарегистрироваться</Button>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

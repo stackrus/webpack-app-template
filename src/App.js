@@ -14,10 +14,10 @@ class App extends Component {
                 <Router>
                     <NaviBar/>
                     <Switch>
-                        <Route path={"/"} component={HomePage}></Route>
-                        <Route path={"/dialog"} component={DialogPage}></Route>
-                        <Route path={"/profile"} component={ProfilePage}></Route>
+                        <Route exact path={"/"} component={HomePage}></Route>
                         <Route path={"/dating"} component={DatingPage}></Route>
+                        <Route path={"/dialogs"} component={DialogPage}></Route>
+                        <Route path={"/profile"} component={ProfilePage}></Route>
                     </Switch>
                 </Router>
             </>
