@@ -1,10 +1,10 @@
 import React from 'react';
 // import {React} from 'react-router-dom'
 
-const Dating = () => (
+const HomePage = () => (
     <>
-        <h1>Dating Page</h1>
+        <h1>Home Page</h1>
     </>
 );
 
-export default Dating;
+export default HomePage;

@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react';
 import NaviBar from './components/NaviBar'
-import Dialog from './Dialog'
-import Profile from './Profile'
-import Dating from './Dating'
+import HomePage from './HomePage'
+import DialogPage from './DialogPage'
+import ProfilePage from './ProfilePage'
+import DatingPage from './DatingPage'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 class App extends Component {
@@ -13,10 +14,10 @@ class App extends Component {
                 <Router>
                     <NaviBar/>
                     <Switch>
-                        {/*<Route path={"/"} component={Home}></Route>*/}
-                        <Route path={"/dialog"} component={Dialog}></Route>
-                        <Route path={"/profile"} component={Profile}></Route>
-                        <Route path={"/dating"} component={Dating}></Route>
+                        <Route path={"/"} component={HomePage}></Route>
+                        <Route path={"/dialog"} component={DialogPage}></Route>
+                        <Route path={"/profile"} component={ProfilePage}></Route>
+                        <Route path={"/dating"} component={DatingPage}></Route>
                     </Switch>
                 </Router>
             </>

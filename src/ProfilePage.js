@@ -1,10 +1,10 @@
 import React from 'react';
 // import {React} from 'react-router-dom'
 
-const Dialog = () => (
+const ProfilePage = () => (
     <>
-        <h1>Dialog Page</h1>
+        <h1>Profile Page</h1>
     </>
 );
 
-export default Dialog;
+export default ProfilePage;

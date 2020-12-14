@@ -9,6 +9,7 @@ const NaviBar = () => (
             <Navbar.Toggle aria-controls={"responsive-navbar-nav"}/>
             <Navbar.Collapse id={"responsive-navbar-nav"}>
                 <Nav className={"mr-auto"}>
+                    <Nav.Link as={Link} to={"/"}>Главная</Nav.Link>
                     <Nav.Link as={Link} to={"/dating"}>Знакомства</Nav.Link>
                     <Nav.Link as={Link} to={"/dialog"}>Диалоги</Nav.Link>
                     <Nav.Link as={Link} to={"/profile"}>Профиль</Nav.Link>
