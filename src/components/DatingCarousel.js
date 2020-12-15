@@ -39,12 +39,12 @@ class DatingCarousel extends Component {
         console.log("id фотокарточки:", this.state.activeIndex);
     };
 
-    nextPage(){
+    nextPage() {
         // console.log(this.state.photoMasLength)
         this.state.activeIndex < this.state.photoMasLength - 1 ? this.setState({activeIndex: this.state.activeIndex + 1}) : ''
     }
 
-    prevPage(){
+    prevPage() {
         this.state.activeIndex > 0 ? this.setState({activeIndex: this.state.activeIndex - 1}) : ''
     }
 
@@ -59,7 +59,7 @@ class DatingCarousel extends Component {
 
                     <Row>
                         <Col>
-                            <Carousel activeIndex={this.state.activeIndex} onSelect={this.handleSelect}  interval={null}>
+                            <Carousel activeIndex={this.state.activeIndex} onSelect={this.handleSelect} interval={null}>
                                 {photoMas.map((logo, index) => (
                                     <Carousel.Item key={index}>
                                         <img
