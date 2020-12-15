@@ -59,7 +59,7 @@ class DatingCarousel extends Component {
 
                     <Row>
                         <Col>
-                            <Carousel activeIndex={this.state.activeIndex} onSelect={this.handleSelect}>
+                            <Carousel activeIndex={this.state.activeIndex} onSelect={this.handleSelect}  interval={null}>
                                 {photoMas.map((logo, index) => (
                                     <Carousel.Item key={index}>
                                         <img
