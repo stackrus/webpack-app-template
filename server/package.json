@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
     "express": "^4.17.1",
+    "express-validator": "^6.8.0",
     "mongoose": "^5.11.8"
   },
   "devDependencies": {
