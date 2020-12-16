@@ -10,9 +10,9 @@
   "author": "Rustam Akhmedov <rustprog@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
     "express": "^4.17.1",
-    "i": "^0.3.6",
     "mongoose": "^5.11.8"
   },
   "devDependencies": {
