@@ -8,7 +8,7 @@
     "start": "webpack serve --mode development --open --hot",
     "build": "webpack --mode production"
   },
-  "author": "Rustam Akhmedov",
+  "author": "Rustam Akhmedov <rusteeck@icloud.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.9",
