@@ -1,24 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react';
-import NaviBar from './components/NaviBar'
-import HomePage from './HomePage'
-import DialogPage from './DialogPage'
-import ProfilePage from './ProfilePage'
-import DatingPage from './DatingPage'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {useRoutes} from './routess'
+import {BrowserRouter as Router} from 'react-router-dom'
 
 class App extends Component {
     render() {
+        const routes = useRoutes(false)
         return (
             <>
                 <Router>
-                    <NaviBar/>
-                    <Switch>
-                        <Route exact path={"/"} component={HomePage}></Route>
-                        <Route path={"/dating"} component={DatingPage}></Route>
-                        <Route path={"/dialogs"} component={DialogPage}></Route>
-                        <Route path={"/profile"} component={ProfilePage}></Route>
-                    </Switch>
+                    {routes}
                 </Router>
             </>
         );

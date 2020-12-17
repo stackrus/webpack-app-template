@@ -1,5 +1,5 @@
 import React from 'react';
-import DatingCarousel from './components/DatingCarousel'
+import DatingCarousel from '../components/DatingCarousel'
 
 
 const DatingPage = () => (

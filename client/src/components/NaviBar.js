@@ -9,15 +9,15 @@ const NaviBar = () => (
             <Navbar.Toggle aria-controls={"responsive-navbar-nav"}/>
             <Navbar.Collapse id={"responsive-navbar-nav"}>
                 <Nav className={"mr-auto"}>
-                    <Nav.Link as={Link} to={"/"}>Главная</Nav.Link>
+                    <Nav.Link as={Link} to={"/home"}>Главная</Nav.Link>
                     <Nav.Link as={Link} to={"/dating"}>Знакомства</Nav.Link>
                     <Nav.Link as={Link} to={"/dialogs"}>Диалоги</Nav.Link>
                     <Nav.Link as={Link} to={"/profile"}>Профиль</Nav.Link>
                 </Nav>
-                <Nav>
-                    <Button className={"mr-2"} variant={"primary"}>Войти</Button>
-                    <Button variant={"secondary"}>Зарегистрироваться</Button>
-                </Nav>
+                {/*<Nav>*/}
+                {/*    <Button className={"mr-2"} variant={"primary"}>Войти</Button>*/}
+                {/*    <Button variant={"secondary"}>Зарегистрироваться</Button>*/}
+                {/*</Nav>*/}
             </Navbar.Collapse>
         </Navbar>
     </>
