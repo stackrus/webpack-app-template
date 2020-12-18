@@ -6,6 +6,15 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 
+const errorsChecker = (req, res) =>{
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            errors: errors.array(),
+            message: errors.array().map((val) => {return val.msg})
+        })
+    }
+}
 
 // /api/auth/register
 router.post(
@@ -19,16 +28,18 @@ router.post(
         try {
             // console.log('Body:', req.body)
 
-            const errors = validationResult(req)
+            errorsChecker(req, res)
 
-            if (!errors.isEmpty()) {
-                // const errorMessage = errors.array().map((val) => {return val.msg})
-                // console.log(errorMessage)
-                return res.status(400).json({
-                    errors: errors.array(),
-                    message: errors.array().map((val) => {return val.msg})
-                })
-            }
+            // const errors = validationResult(req)
+            //
+            // if (!errors.isEmpty()) {
+            //     // const errorMessage = errors.array().map((val) => {return val.msg})
+            //     // console.log(errorMessage)
+            //     return res.status(400).json({
+            //         errors: errors.array(),
+            //         message: errors.array().map((val) => {return val.msg})
+            //     })
+            // }
 
             const {email, password} = req.body
             const candidate = await User.findOne({email: email})
@@ -49,6 +60,8 @@ router.post(
     })
 
 
+
+
 // /api/auth/login
 router.post(
     '/login',
@@ -58,14 +71,17 @@ router.post(
     ],
     async (req, res) => {
         try {
-            const errors = validationResult(req)
+            // const errors = validationResult(req)
+            //
+            // if (!errors.isEmpty()) {
+            //     return res.status(400).json({
+            //         errors: errors.array(),
+            //         message: "Incorrect data"
+            //     })
+            // }
 
-            if (!errors.isEmpty()) {
-                return res.status(400).json({
-                    errors: errors.array(),
-                    message: "Incorrect data"
-                })
-            }
+            errorsChecker(req, res)
+
 
             const {email, password} = req.body
 

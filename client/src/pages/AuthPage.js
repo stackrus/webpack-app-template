@@ -30,6 +30,18 @@ const AuthPage = () => {
             }
     }
 
+    const authorisationHandler = async () => {
+        try {
+            const data = await request('/api/auth/login', 'POST', {...form})
+            setResponseAnswer(data.message)
+            // console.log(error)
+        }
+        catch (e) {
+            // console.log(e)
+            setResponseAnswer(e.message)
+        }
+    }
+
     return (
         <div className={"container"}>
             <div className={"row"} align={"center"}>
@@ -64,7 +76,7 @@ const AuthPage = () => {
             <div className={"col"}>
                 <button
                     className={"btn"}
-
+                    onClick={authorisationHandler}
                     disabled={loading}
                 >
                     Войти
