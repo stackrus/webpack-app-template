@@ -1,12 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import useHttp from '../hooks/http.hook'
 
 const AuthPage = () => {
     const {loading, error, request} = useHttp()
+    const [responseAnswer, setResponseAnswer] = useState('')
     const [form, setForm] = useState({
         email: "",
         password: ""
     })
+
+    // useEffect(() => {
+    //     console.log(error)
+    // }, [error])
 
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
@@ -16,9 +21,13 @@ const AuthPage = () => {
     const registerHandler = async () => {
             try {
                 const data = await request('/api/auth/register', 'POST', {...form})
-                console.log('Data:', data)
+                setResponseAnswer(data.message)
+                // console.log(error)
             }
-            catch (e) {}
+            catch (e) {
+                // console.log(e)
+                setResponseAnswer(e.message)
+            }
     }
 
     return (
@@ -52,25 +61,33 @@ const AuthPage = () => {
             </div>
 
             <div className={"row"} align={"center"}>
-                <div className={"col"}>
-                    <button
-                        className={"btn"}
+            <div className={"col"}>
+                <button
+                    className={"btn"}
 
-                        disabled={loading}
-                    >
-                        Войти
-                    </button>
+                    disabled={loading}
+                >
+                    Войти
+                </button>
+            </div>
+
+            <div className={"col"}>
+                <button
+                    className={"btn"}
+                    onClick={registerHandler}
+                    disabled={loading}
+                >
+                    Зарегистрироваться
+                </button>
+            </div>
+
+        </div>
+
+            <div className={"row"} align={"center"}>
+                <div className={"col"}>
+                    <p id={"ErrorParagraph"}>{responseAnswer}</p>
                 </div>
 
-                <div className={"col"}>
-                    <button
-                        className={"btn"}
-                        onClick={registerHandler}
-                        disabled={loading}
-                    >
-                        Зарегистрироваться
-                    </button>
-                </div>
             </div>
 
         </div>

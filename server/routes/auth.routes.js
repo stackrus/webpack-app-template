@@ -11,8 +11,8 @@ const {check, validationResult} = require('express-validator')
 router.post(
     '/register',
     [
-        check('email', 'Неккоректный email').isEmail(),
-        check('password', 'Минимальная длина пароля 6 символов')
+        check('email', 'Incorrect email').isEmail(),
+        check('password', 'Minimal password length is 6 symbols')
             .isLength({min: 6})
     ],
     async (req, res) => {
@@ -22,9 +22,11 @@ router.post(
             const errors = validationResult(req)
 
             if (!errors.isEmpty()) {
+                // const errorMessage = errors.array().map((val) => {return val.msg})
+                // console.log(errorMessage)
                 return res.status(400).json({
                     errors: errors.array(),
-                    message: "Неккоректные данные при регистрации"
+                    message: errors.array().map((val) => {return val.msg})
                 })
             }
 
@@ -32,7 +34,7 @@ router.post(
             const candidate = await User.findOne({email: email})
 
             if (candidate) {
-                return res.status(400).json({message: "Такой email уже используется"})
+                return res.status(400).json({message: "This email is already used"})
             }
 
             const hashedPassword = await bcrypt.hash(password, 12)
@@ -40,9 +42,9 @@ router.post(
 
             await user.save()
 
-            res.status(201).json({message: "Пользователь успешно создан"})
+            res.status(201).json({message: "User is successfully created"})
         } catch (e) {
-            res.status(500).json({message: "Что-то пошло не так, попробуйте снова"})
+            res.status(500).json({message: "Something went wrong, please try again"})
         }
     })
 
@@ -51,8 +53,8 @@ router.post(
 router.post(
     '/login',
     [
-        check('email', 'Введите корректный email').normalizeEmail().isEmail(),
-        check('password', 'Введите пароль').exists()
+        check('email', 'Enter correct email or password').normalizeEmail().isEmail(),
+        check('password', 'Enter correct email or password').exists()
     ],
     async (req, res) => {
         try {
@@ -61,7 +63,7 @@ router.post(
             if (!errors.isEmpty()) {
                 return res.status(400).json({
                     errors: errors.array(),
-                    message: "Неккоректные данные при авторизации"
+                    message: "Incorrect data"
                 })
             }
 
@@ -70,13 +72,13 @@ router.post(
             const user = await User.findOne({email: email})
 
             if (!user){
-                return res.status(400).json({message: "Пользователь не найден"})
+                return res.status(400).json({message: "User not found"})
             }
 
             const isPassMatch = await bcrypt.compare(password, user.password) // этот метод позволяет сравнивать зашифрованные пароли
 
             if (!isPassMatch){
-                return res.status(400).json({message: "Неверный пароль, попробуйте снова"})
+                return res.status(400).json({message: "Wrong password, try again"})
             }
 
             const token = jwt.sign(
@@ -88,7 +90,7 @@ router.post(
             res.json({ token, userId: user.id })
 
         } catch (e) {
-            res.status(500).json({message: "Что-то пошло не так, попробуйте снова"})
+            res.status(500).json({message: "Something went wrong, try again"})
         }
     })
 
