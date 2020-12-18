@@ -9,6 +9,19 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+
+        // every request made to 'locahost:8080/api/xxxx' will be proxyfied to 'http://localhost:5000/api/xxxx'
+        proxy: {
+            "/api/*": {
+                target: "http://localhost:5000",
+                secure: false,
+                rewrite: function(req, options) {
+                    //you can handle rewrite here if you need to
+                }
+            },
+
+        },
+
     },
     module: {
         rules: [
