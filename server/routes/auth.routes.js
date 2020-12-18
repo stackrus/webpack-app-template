@@ -6,16 +6,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 
-const errorsChecker = (req, res) =>{
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            errors: errors.array(),
-            message: errors.array().map((val) => {return val.msg})
-        })
-    }
-}
-
 // /api/auth/register
 router.post(
     '/register',
@@ -26,20 +16,15 @@ router.post(
     ],
     async (req, res) => {
         try {
-            // console.log('Body:', req.body)
 
-            errorsChecker(req, res)
+            const errors = validationResult(req)
 
-            // const errors = validationResult(req)
-            //
-            // if (!errors.isEmpty()) {
-            //     // const errorMessage = errors.array().map((val) => {return val.msg})
-            //     // console.log(errorMessage)
-            //     return res.status(400).json({
-            //         errors: errors.array(),
-            //         message: errors.array().map((val) => {return val.msg})
-            //     })
-            // }
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    errors: errors.array(),
+                    message: errors.array().map((val) => {return val.msg})
+                })
+            }
 
             const {email, password} = req.body
             const candidate = await User.findOne({email: email})
@@ -61,7 +46,6 @@ router.post(
 
 
 
-
 // /api/auth/login
 router.post(
     '/login',
@@ -71,17 +55,14 @@ router.post(
     ],
     async (req, res) => {
         try {
-            // const errors = validationResult(req)
-            //
-            // if (!errors.isEmpty()) {
-            //     return res.status(400).json({
-            //         errors: errors.array(),
-            //         message: "Incorrect data"
-            //     })
-            // }
+            const errors = validationResult(req)
 
-            errorsChecker(req, res)
-
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    errors: errors.array(),
+                    message: errors.array().map((val) => {return val.msg})
+                })
+            }
 
             const {email, password} = req.body
 
@@ -94,7 +75,7 @@ router.post(
             const isPassMatch = await bcrypt.compare(password, user.password) // этот метод позволяет сравнивать зашифрованные пароли
 
             if (!isPassMatch){
-                return res.status(400).json({message: "Wrong password, try again"})
+                return res.status(400).json({message: "Wrong password or email, try again"})
             }
 
             const token = jwt.sign(
